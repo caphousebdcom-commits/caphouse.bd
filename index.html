@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cap House BD | Premium Apparel Store</title>
+    <link rel="icon" type="image/png" href="logo_boshao.png">
+    
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        brand: {
+                            red: '#DC2626',
+                            darkred: '#991B1B',
+                            lightred: '#EF4444',
+                            black: '#09090B',
+                            card: '#121215',
+                            border: '#27272A'
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <!-- FontAwesome Icons & Google Fonts -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body class="bg-[#09090B] text-gray-100 font-sans antialiased min-h-screen flex flex-col selection:bg-brand-red selection:text-white">
+
+    <!-- Top Bar -->
+    <div class="bg-brand-red text-white text-xs py-2 px-4 text-center font-semibold tracking-wide flex justify-between items-center max-w-7xl mx-auto w-full">
+        <div class="hidden sm:flex items-center gap-2">
+            <i class="fa-solid fa-truck-fast"></i>
+            <span>All Over BD Delivery Available | Cash on Delivery</span>
+        </div>
+        <div class="mx-auto sm:mx-0 font-bold tracking-wider uppercase">
+            ⚡ Premium Trucker Caps & Drop Shoulder Tees
+        </div>
+        <div class="hidden md:flex items-center gap-4">
+            <span class="text-xs text-red-100"><i class="fa-solid fa-location-dot mr-1"></i>Wari, Dhaka</span>
+        </div>
+    </div>
+
+    <!-- Header -->
+    <header class="sticky top-0 z-40 bg-[#09090B]/90 backdrop-blur-md border-b border-brand-border">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
+            <a href="#" class="flex items-center gap-3 group">
+                <img src="images/logo_boshao.png" alt="Cap House BD Logo" class="w-12 h-12 rounded-full object-cover border-2 border-brand-red p-0.5 shadow-lg shadow-brand-red/30 group-hover:scale-105 transition-transform duration-300">
+                <div>
+                    <span class="text-xl font-extrabold tracking-tight text-white flex items-center gap-1">
+                        CAP HOUSE <span class="text-brand-red">BD</span>
+                        <i class="fa-solid fa-circle-check text-brand-red text-xs"></i>
+                    </span>
+                    <p class="text-[10px] text-gray-400 tracking-wider uppercase -mt-1">Streetwear & Apparel</p>
+                </div>
+            </a>
+
+            <!-- Search Bar -->
+            <div class="hidden md:flex flex-1 max-w-md mx-8">
+                <div class="relative w-full">
+                    <input type="text" id="searchInput" placeholder="Search caps, t-shirts, colors..." 
+                           class="w-full bg-[#121215] border border-brand-border rounded-full py-2.5 pl-10 pr-4 text-sm text-gray-200 focus:outline-none focus:border-brand-red transition-all">
+                    <i class="fa-solid fa-magnifying-glass absolute left-3.5 top-3.5 text-gray-400 text-sm"></i>
+                </div>
+            </div>
+
+            <div class="flex items-center gap-3">
+                <button id="cartBtn" class="relative p-2.5 rounded-full bg-zinc-900 border border-brand-border hover:border-brand-red transition-all text-gray-200 hover:text-white flex items-center justify-center">
+                    <i class="fa-solid fa-bag-shopping text-lg"></i>
+                    <span id="cartBadge" class="absolute -top-1 -right-1 bg-brand-red text-white text-[10px] font-bold w-5 h-5 rounded-full flex items-center justify-center border-2 border-black scale-0 transition-transform duration-300">0</span>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Mobile Search -->
+    <div class="md:hidden px-4 py-3 bg-[#09090B] border-b border-brand-border">
+        <div class="relative w-full">
+            <input type="text" id="searchInputMobile" placeholder="Search products..." 
+                   class="w-full bg-[#121215] border border-brand-border rounded-full py-2 pl-9 pr-4 text-xs text-gray-200 focus:outline-none focus:border-brand-red">
+            <i class="fa-solid fa-magnifying-glass absolute left-3 top-2.5 text-gray-400 text-xs"></i>
+        </div>
+    </div>
+
+    <!-- Category Tabs -->
+    <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-8 pb-4 w-full">
+        <div class="flex items-center justify-between border-b border-brand-border pb-4 flex-wrap gap-4">
+            <div class="flex items-center gap-2 overflow-x-auto pb-1 max-w-full no-scrollbar">
+                <button class="filter-btn active px-5 py-2.5 rounded-full text-xs font-bold uppercase bg-brand-red text-white shadow-md shadow-brand-red/20" data-category="all">
+                    All Products
+                </button>
+                <button class="filter-btn px-5 py-2.5 rounded-full text-xs font-bold uppercase bg-zinc-900 border border-brand-border text-gray-300 hover:border-brand-red" data-category="cap">
+                    All Caps 
+                </button>
+                <button class="filter-btn px-5 py-2.5 rounded-full text-xs font-bold uppercase bg-zinc-900 border border-brand-border text-gray-300 hover:border-brand-red" data-category="tshirt">
+                    All Drops 
+                </button>
+            </div>
+            <div class="text-xs text-gray-400 font-medium">
+                Showing <span id="productCount" class="text-white font-bold">14</span> items
+            </div>
+        </div>
+    </section>
+
+    <!-- Products Catalog Grid -->
+    <main id="products" class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6 flex-1 w-full">
+        <div id="productGrid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6"></div>
+    </main>
+
+    <!-- Product Details Modal -->
+    <div id="productModal" class="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/80 backdrop-blur-sm opacity-0 pointer-events-none transition-all duration-300">
+        <div class="bg-brand-card border border-brand-border w-full max-w-3xl rounded-2xl overflow-hidden shadow-2xl relative max-h-[90vh] flex flex-col md:flex-row transform scale-95 transition-all duration-300" id="modalContainer">
+            <button id="closeModal" class="absolute top-4 right-4 z-10 w-8 h-8 bg-black/70 hover:bg-brand-red text-white rounded-full flex items-center justify-center">
+                <i class="fa-solid fa-xmark"></i>
+            </button>
+            <div class="md:w-1/2 bg-zinc-950 p-6 flex flex-col items-center justify-center border-b md:border-b-0 md:border-r border-brand-border relative">
+                <img id="modalImage" src="" alt="" class="max-h-64 md:max-h-80 object-contain rounded-lg transition-all duration-300">
+                <div id="modalColorSwatches" class="flex gap-2 mt-4"></div>
+            </div>
+            <div class="md:w-1/2 p-6 flex flex-col justify-between overflow-y-auto">
+                <div>
+                    <span id="modalCategory" class="text-[10px] font-bold text-brand-red tracking-widest uppercase px-2 py-0.5 rounded bg-brand-red/10 border border-brand-red/20"></span>
+                    <h2 id="modalTitle" class="text-2xl font-black text-white mt-2"></h2>
+                    <div class="flex items-center gap-3 mt-2">
+                        <span id="modalPrice" class="text-2xl font-black text-brand-red"></span>
+                        <span id="modalOldPrice" class="text-sm text-gray-500 line-through"></span>
+                    </div>
+                    <p id="modalDesc" class="text-gray-400 text-xs mt-3 leading-relaxed"></p>
+                    
+                    <div id="modalSizeContainer" class="mt-4 hidden">
+                        <label class="block text-xs font-bold uppercase text-gray-300 mb-2">Select Size:</label>
+                        <div class="flex gap-2" id="modalSizes">
+                            <button class="size-btn px-3 py-1.5 border border-brand-border rounded text-xs font-bold text-gray-300 hover:border-brand-red" data-size="S">S</button>
+                            <button class="size-btn px-3 py-1.5 border border-brand-border rounded text-xs font-bold text-gray-300 hover:border-brand-red" data-size="M">M</button>
+                            <button class="size-btn px-3 py-1.5 border border-brand-border rounded text-xs font-bold text-white bg-brand-red border-brand-red" data-size="L">L</button>
+                            <button class="size-btn px-3 py-1.5 border border-brand-border rounded text-xs font-bold text-gray-300 hover:border-brand-red" data-size="XL">XL</button>
+                            <button class="size-btn px-3 py-1.5 border border-brand-border rounded text-xs font-bold text-gray-300 hover:border-brand-red" data-size="XXL">XXL</button>
+                        </div>
+                    </div>
+
+                    <div class="mt-4">
+                        <label class="block text-xs font-bold uppercase text-gray-300 mb-2">Quantity:</label>
+                        <div class="flex items-center gap-3 bg-zinc-900 border border-brand-border rounded-lg w-fit p-1">
+                            <button id="modalQtyMinus" class="w-7 h-7 flex items-center justify-center text-gray-400 font-bold">-</button>
+                            <span id="modalQty" class="text-sm font-bold text-white px-2">1</span>
+                            <button id="modalQtyPlus" class="w-7 h-7 flex items-center justify-center text-gray-400 font-bold">+</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="mt-6 flex flex-col gap-2">
+                    <button id="modalAddToCart" class="w-full py-3 bg-brand-red hover:bg-brand-darkred text-white font-bold rounded-xl text-sm transition-all flex items-center justify-center gap-2 shadow-lg shadow-brand-red/30">
+                        <i class="fa-solid fa-cart-plus"></i> Add to Cart
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Side Cart & Checkout Form Drawer -->
+    <div id="cartDrawer" class="fixed inset-0 z-50 pointer-events-none transition-all duration-300">
+        <div id="cartOverlay" class="absolute inset-0 bg-black/60 opacity-0 transition-opacity duration-300"></div>
+        <div id="cartPanel" class="absolute top-0 right-0 h-full w-full max-w-md bg-brand-card border-l border-brand-border p-6 flex flex-col justify-between transform translate-x-full transition-transform duration-300 ease-in-out pointer-events-auto overflow-y-auto">
+            <div>
+                <div class="flex items-center justify-between border-b border-brand-border pb-4">
+                    <h3 class="text-lg font-black text-white uppercase flex items-center gap-2">
+                        <i class="fa-solid fa-bag-shopping text-brand-red"></i> Shopping Cart & Checkout
+                    </h3>
+                    <button id="closeCart" class="text-gray-400 hover:text-white p-1">
+                        <i class="fa-solid fa-xmark text-lg"></i>
+                    </button>
+                </div>
+
+                <!-- Selected Items List -->
+                <div id="cartItemsList" class="py-4 space-y-3 max-h-[35vh] overflow-y-auto border-b border-brand-border"></div>
+
+                <!-- Direct Website Checkout Form -->
+                <form id="orderCheckoutForm" class="mt-4 space-y-3">
+                    <h4 class="text-xs font-bold uppercase text-brand-red tracking-wider">Customer Details</h4>
+                    <div>
+                        <label class="block text-[11px] text-gray-400 mb-1">Full Name *</label>
+                        <input type="text" id="custName" required placeholder="Enter your full name" 
+                               class="w-full bg-zinc-950 border border-brand-border rounded-lg py-2 px-3 text-xs text-white focus:outline-none focus:border-brand-red">
+                    </div>
+                    <div>
+                        <label class="block text-[11px] text-gray-400 mb-1">Phone Number *</label>
+                        <input type="tel" id="custPhone" required placeholder="017XXXXXXXX" 
+                               class="w-full bg-zinc-950 border border-brand-border rounded-lg py-2 px-3 text-xs text-white focus:outline-none focus:border-brand-red">
+                    </div>
+                    <div>
+                        <label class="block text-[11px] text-gray-400 mb-1">Full Delivery Address *</label>
+                        <textarea id="custAddress" required rows="2" placeholder="House/Road no, Area name, District" 
+                                  class="w-full bg-zinc-950 border border-brand-border rounded-lg py-2 px-3 text-xs text-white focus:outline-none focus:border-brand-red"></textarea>
+                    </div>
+                    <div>
+                        <label class="block text-[11px] text-gray-400 mb-1">Delivery Area *</label>
+                        <select id="custArea" class="w-full bg-zinc-950 border border-brand-border rounded-lg py-2 px-3 text-xs text-white focus:outline-none focus:border-brand-red">
+                            <option value="inside">Inside Dhaka (৳70)</option>
+                            <option value="outside">Outside Dhaka (৳130)</option>
+                        </select>
+                    </div>
+                </form>
+            </div>
+
+            <!-- Total Price & Order Submit Button -->
+            <div class="border-t border-brand-border pt-4 mt-4">
+                <div class="flex justify-between text-xs text-gray-400 mb-1">
+                    <span>Subtotal:</span>
+                    <span id="cartSubtotal" class="text-white font-bold">৳0</span>
+                </div>
+                <div class="flex justify-between text-xs text-gray-400 mb-1">
+                    <span>Delivery Charge:</span>
+                    <span id="deliveryChargeText" class="text-white font-bold">৳70</span>
+                </div>
+                <div class="flex justify-between text-lg font-black text-white mb-4">
+                    <span>Grand Total:</span>
+                    <span id="cartTotal" class="text-brand-red">৳0</span>
+                </div>
+                <button type="button" id="submitOrderBtn" class="w-full py-3.5 bg-brand-red hover:bg-brand-darkred text-white font-extrabold rounded-xl text-sm transition-all flex items-center justify-center gap-2 shadow-lg shadow-brand-red/30 uppercase tracking-wide">
+                    <i class="fa-solid fa-paper-plane"></i> Place Order Now
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Order Success Modal -->
+    <div id="successModal" class="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/90 backdrop-blur-md opacity-0 pointer-events-none transition-all duration-300">
+        <div class="bg-brand-card border border-brand-border w-full max-w-md rounded-2xl p-6 text-center shadow-2xl relative">
+            <div class="w-16 h-16 bg-green-500/20 text-green-500 rounded-full flex items-center justify-center text-3xl mx-auto mb-4 border border-green-500/30">
+                <i class="fa-solid fa-circle-check"></i>
+            </div>
+            <h3 class="text-2xl font-black text-white uppercase">Order Submitted!</h3>
+            <p class="text-xs text-gray-400 mt-2">Thank you for shopping with Cap House BD. Your order details have been recorded successfully!</p>
+            
+            <div class="bg-zinc-950 p-4 rounded-xl border border-brand-border mt-4 text-left space-y-2 text-xs">
+                <p><span class="text-gray-400">Order ID:</span> <span id="successOrderId" class="font-bold text-brand-red">#CH-1001</span></p>
+                <p><span class="text-gray-400">Customer:</span> <span id="successCustName" class="text-white"></span></p>
+                <p><span class="text-gray-400">Total Amount:</span> <span id="successTotal" class="font-bold text-white"></span></p>
+            </div>
+
+            <button id="closeSuccessBtn" class="w-full py-3 bg-brand-red hover:bg-brand-darkred text-white font-bold rounded-xl text-xs uppercase tracking-wider mt-6">
+                Back to Shop
+            </button>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="bg-zinc-950 border-t border-brand-border mt-16 pt-12 pb-8">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid grid-cols-1 md:grid-cols-4 gap-8 mb-10">
+            <!-- Brand Info -->
+            <div class="md:col-span-1">
+                <div class="flex items-center gap-3 mb-4">
+                    <img src="images/logo_boshao.png" alt="Cap House BD Logo" class="w-10 h-10 rounded-full object-cover border-2 border-brand-red shadow-lg shadow-brand-red/30">
+                    <span class="text-lg font-extrabold tracking-tight text-white">CAP HOUSE <span class="text-brand-red">BD</span></span>
+                </div>
+                <p class="text-xs text-gray-400 leading-relaxed mb-4">
+                    Your ultimate destination for premium quality trucker caps and drop shoulder t-shirts in Bangladesh. Redefining street fashion with durability and bold design.
+                </p>
+                <div class="flex items-center gap-2">
+                    <span class="w-2 h-2 rounded-full bg-green-500 animate-pulse"></span>
+                    <span class="text-[11px] text-gray-300 font-medium">Online & Ready to Order</span>
+                </div>
+            </div>
+
+            <!-- Quick Links -->
+            <div>
+                <h4 class="text-xs font-bold uppercase tracking-wider text-white mb-4 border-l-2 border-brand-red pl-2">Quick Links</h4>
+                <ul class="space-y-2 text-xs text-gray-400">
+                    <li><a href="#products" class="hover:text-brand-red transition-colors flex items-center gap-1.5"><i class="fa-solid fa-chevron-right text-[9px] text-brand-red"></i> Trucker Caps Collection</a></li>
+                    <li><a href="#products" class="hover:text-brand-red transition-colors flex items-center gap-1.5"><i class="fa-solid fa-chevron-right text-[9px] text-brand-red"></i> Drop Shoulder T-Shirts</a></li>
+                    <li><a href="#" class="hover:text-brand-red transition-colors flex items-center gap-1.5"><i class="fa-solid fa-chevron-right text-[9px] text-brand-red"></i> Privacy & Policy</a></li>
+                </ul>
+            </div>
+
+            <!-- Contact & Location -->
+            <div>
+                <h4 class="text-xs font-bold uppercase tracking-wider text-white mb-4 border-l-2 border-brand-red pl-2">Store & Location</h4>
+                <ul class="space-y-2.5 text-xs text-gray-400">
+                    <li class="flex items-start gap-2">
+                        <i class="fa-solid fa-location-dot text-brand-red mt-0.5"></i>
+                        <span>Wari, Dhaka, Bangladesh 1100</span>
+                    </li>
+                    <li class="flex items-center gap-2">
+                        <i class="fa-solid fa-envelope text-brand-red"></i>
+                        <span>caphouse.bd.com@gmail.com</span>
+                    </li>
+                    <li class="flex items-center gap-2">
+                        <i class="fa-solid fa-truck text-brand-red"></i>
+                        <span>Cash on Delivery All Over BD</span>
+                    </li>
+                </ul>
+            </div>
+
+            <!-- Social Platforms -->
+            <div>
+                <h4 class="text-xs font-bold uppercase tracking-wider text-white mb-4 border-l-2 border-brand-red pl-2">Connect & Order</h4>
+                <p class="text-xs text-gray-400 mb-4">We are active on all our social platforms. You can also place an order by sending a direct message:</p>
+                <div class="flex items-center gap-3">
+                    <!-- Facebook -->
+                    <a href="https://www.facebook.com/profile.php?id=61593371641320&mibextid=rS40aB7S9Ucbxw6v" target="_blank" title="Facebook Page" class="w-10 h-10 rounded-xl bg-zinc-900 border border-brand-border hover:bg-blue-600 hover:border-blue-600 hover:text-white flex items-center justify-center text-gray-300 transition-all duration-300 shadow-md">
+                        <i class="fa-brands fa-facebook-f text-sm"></i>
+                    </a>
+                    <!-- Instagram -->
+                    <a href="https://www.instagram.com/caphouse.bd?srtk=aXhneW8zcW4xcmd0" target="_blank" title="Instagram Profile" class="w-10 h-10 rounded-xl bg-zinc-900 border border-brand-border hover:bg-gradient-to-tr hover:from-amber-500 hover:via-pink-600 hover:to-purple-600 hover:border-transparent hover:text-white flex items-center justify-center text-gray-300 transition-all duration-300 shadow-md">
+                        <i class="fa-brands fa-instagram text-sm"></i>
+                    </a>
+                    <!-- WhatsApp -->
+                    <a href="https://wa.me/8801577330628" target="_blank" title="WhatsApp Chat" class="w-10 h-10 rounded-xl bg-zinc-900 border border-brand-border hover:bg-green-600 hover:border-green-600 hover:text-white flex items-center justify-center text-gray-300 transition-all duration-300 shadow-md">
+                        <i class="fa-brands fa-whatsapp text-sm"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Copyright Bottom Bar -->
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-6 border-t border-brand-border/40 flex flex-col sm:flex-row items-center justify-between text-[11px] text-gray-500 gap-4">
+            <p>© 2026 Cap House BD. All rights reserved.</p>
+            <div class="flex items-center gap-4">
+                <span class="text-gray-400 font-semibold">Secure COD Ordering</span>
+                <span>•</span>
+                <span class="text-gray-400 font-semibold">Wari, Dhaka</span>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
