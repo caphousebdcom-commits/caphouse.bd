@@ -4,53 +4,97 @@
 const productsData = [
     {
         id: 1,
-        title: "Pro Red-Black Signature Trucker Cap",
+        title: "Seek Inner Peace Trucker Cap",
         category: "cap", // "cap" ba "tshirt"
-        price: 450,       // বর্তমান বিক্রয় মূল্য
-        oldPrice: 900,    // মূল দাম (অটোমেটিক 50% OFF দেখাবে)
-        description: "Official Cap House BD trucker cap with breathable mesh and adjustable snapback.",
+        price: 349,       // বর্তমান বিক্রয় মূল্য
+        oldPrice: 549,    // মূল দাম (অটোমেটিক ডিসকাউন্ট দেখাবে)
+        description: "Elevate your streetwear look with this premium 'Seek Inner Peace' trucker cap. Features a bold front patch with typography design, a striking red visor, and breathable black mesh backing for maximum comfort and style.",
         colors: [
-            { name: "Black/Red", code: "#DC2626", img: "images/blue honey.jpeg" },
-            { name: "Solid Black", code: "#000000", img: "images/red honey.jpeg" }
+            { name: "Black/Red", code: "#DC2626", img: "images/seakinner b&R.jpeg" },
+            { name: "Solid Black", code: "#000000", img: "images/redhoney.jpeg" }
+        ]
+    },
+    {
+        id: 2,
+        title: "71 Heritage Suede Cap",
+        category: "cap",
+        price: 399,
+        oldPrice: 549,   // অটোমেটিক ডিসকাউন্ট দেখাবে
+        description: "Crafted with a premium suede texture, this '71 Heritage cap features a striking burnt orange crown with 3D embroidery and a contrasting dark grey visor for an authentic vintage streetwear vibe.",
+        colors: [
+            { 
+                name: "Beige & Charcoal", 
+                code: "#D97706", 
+                img: "images/71orange.jpeg",   // সামনের ছবি
+                
+            }
         ]
     },
     {
         id: 3,
-        title: "Heavyweight Black Drop Shoulder Tee",
-        category: "tshirt",
-        price: 600,
-        oldPrice: 1000,   // অটোমেটিক 40% OFF দেখাবে
-        description: "220 GSM 100% combed cotton heavy drop shoulder oversize tee.",
+        title: "NY Monogram Mesh Trucker",
+        category: "cap",
+        price: 349,
+        oldPrice: 549,   // অটোমেটিক ডিসকাউন্ট দেখাবে
+        description: "Designed with a subtle earthy beige crown, a black 3D geometric monogram logo, and dark charcoal mesh paneling for a modern, industrial streetwear aesthetic.  ",
         colors: [
             { 
-                name: "Jet Black", 
-                code: "#000000", 
-                img: "images/red honey.jpeg", // সামনের ছবি
-                backImg: "images/white honey.jpeg" // পিছনের ছবি (মাউস নিলে এটি দেখাবে)[cite: 2]
+                name: "Beige & Charcoal", 
+                code: "#D4B896", 
+                img: "images/hatgoods-brown.jpeg",   // সামনের ছবি // পিছনের ছবি (মাউস নিলে এটি দেখাবে)
             }
         ]
     },
-
     {
-        id: 2,
-        title: "Heavyweight Black Drop Shoulder Tee",
-        category: "tshirt",
-        price: 600,
-        oldPrice: 1000,   // অটোমেটিক 40% OFF দেখাবে
-        description: "220 GSM 100% combed cotton heavy drop shoulder oversize tee.",
+        id: 4,
+        title: "LA Lakers Edition Snapback",
+        category: "cap",
+        price: 449,
+        oldPrice: 699,
+        description: "Rep your favorite team in style with this classic LA Lakers snapback, featuring a vibrant yellow crown and an iconic purple visor with bold front embroidery.",
         colors: [
             { 
-                name: "Jet Black", 
-                code: "#000000", 
-                img: "images/white honey.jpeg", // সামনের ছবি
-                backImg: "images/blue honey.jpeg" // পিছনের ছবি (মাউস নিলে এটি দেখাবে)[cite: 2]
+                name: "Default", 
+                code: "#FBBF24", 
+                img: "images/leakerspop-y.jpeg",   // সামনের ছবি
             }
         ]
-    }
-    // 👇 নতুন প্রোডাক্ট অ্যাড করতে চাইলে ওপরের মতো করে ঠিক নিচে কমা (,) দিয়ে যুক্ত করবেন।
+    },
+    {
+        id: 5,
+        title: "99 Royal Blue Snapback",
+        category: "cap",
+        price: 449,
+        oldPrice: 699,
+        description: "Stand out with this clean '99 Royal Blue snapback, featuring a vibrant blue crown, bold embroidered '99' lettering, and a sleek contrasting black flat visor.",
+        colors: [
+            { 
+                name: "Royal Blue & Black", 
+                code: "#2563EB ", 
+                img: "images/bluepop99.jpeg",   // ক্যাপের সামনের ছবি
+            }
+        ]
+    },
+    {
+        id: 6,
+        title: "Jordan 23 Drip Graphic Tee",
+        category: "tshirt",
+        price: 350,
+        oldPrice: 549,
+        description: 'Fresh streetwear t-shirt featuring a crisp white base with drip-style "JORDAN" typography, the iconic Jumpman silhouetted logo, and a bold dual-pattern "23" graphic print on the back.',
+        colors: [
+            { 
+                name: "White, Black & Orange", 
+                code: "#FFFFFF", 
+                img: "images/white jordan.jpeg",   // সামনের ছবি
+               
+            }
+        ]
+    },
+    // 👇 নতুন প্রোডাক্ট অ্যাড করতে চাইলে ওপরের মতো করে ঠিক নিচে কমা (,) দিয়ে যুক্ত করবেন।
 ];
 
-// ==========================================
+// ==================================Royal Blue & Black========
 // App State
 // ==========================================
 let cart = [];
@@ -131,7 +175,7 @@ function renderProducts() {
         }
 
         const frontImg = product.colors[0].img;
-        const backImg = product.colors[0].backImg ? product.colors[0].backImg : frontImg; // ব্যাক ইমেজ না থাকলে ফ্রন্ট ইমেজই থাকবে[cite: 2]
+        const backImg = product.colors[0].backImg ? product.colors[0].backImg : frontImg;
 
         return `
             <div class="bg-brand-card border border-brand-border hover:border-brand-red rounded-2xl p-4 flex flex-col justify-between transition-all duration-300 group">
